@@ -4,7 +4,7 @@ const path = require('path');
 let q = new Queue();
 
 module.exports = {
-    getFilesForUpload(scanDirectory, shouldRecurse, extensionsToUpload) {
+    getFilesForUpload(scanDirectory, shouldRecurse, baseContainerPath, extensionsToUpload) {
         let filesToUpload = [];
         q.enqueue(scanDirectory);
         while (!q.isEmpty()) {
@@ -34,7 +34,8 @@ module.exports = {
         let uploadStructure = filesToUpload.map(t => {
             let relativePath = t.replace(scanDirectory, '');
             if (relativePath[0] === '/') relativePath = relativePath.substring(1);
-            return { absolutePath: t, relativePath: relativePath }
+            if (baseContainerPath !== undefined) relativePath = `${baseContainerPath}/${relativePath}`;
+            return { absolutePath: t, relativePath: relativePath};
         });
 
         return uploadStructure;

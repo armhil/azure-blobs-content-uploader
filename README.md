@@ -19,7 +19,7 @@ See the `directoriesToUpload` parameter, which supports passing multiple directo
         uses: armhil/azure-blobs-content-uploader@1.0.0
         with:
           azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }} # could be any secret that you have, see below for the format
-          directoriesToUpload: '[{"path": "test/integrationtest-directory", "shouldRecurse": "true" }]'
+          directoriesToUpload: '[{"path": "test/integrationtest-directory", "shouldRecurse": "true", "baseContainerPath": "somePath" }]'
 ```
 
 ### Azure blob details
@@ -30,7 +30,7 @@ The content uploader supports uploading to multiple storage accounts, so you're 
         uses: armhil/azure-blobs-content-uploader@1.0.0
         with:
           azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }} # could be any secret that you have, see below for the format
-          directoriesToUpload: '[{"path": "test/integrationtest-directory", "shouldRecurse": "true" }]'
+          directoriesToUpload: '[{"path": "test/integrationtest-directory", "shouldRecurse": "true", "baseContainerPath": "somePath" }]'
 ```
 
 You should use the below format for the `azureBlobConfiguration` parameter and this value should come from the secrets. **azureBlobConfiguration parameter is expected to contain the connection strings to blob storage accounts, so it's incredibly important to store it in github repository secrets, rather than some plaintext mechanism**.

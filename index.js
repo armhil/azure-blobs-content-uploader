@@ -17,7 +17,7 @@ try {
     const directoriesToUpload = JSON.parse(core.getInput('directoriesToUpload')) || [];
     let filesToUpload = [];
     directoriesToUpload.forEach(t => {
-      filesToUpload = filesToUpload.concat(fileUtils.getFilesForUpload(t.path, t.shouldRecurse, Object.keys(fileTypesToUpload)));
+      filesToUpload = filesToUpload.concat(fileUtils.getFilesForUpload(t.path, t.shouldRecurse, t.baseContainerPath, Object.keys(fileTypesToUpload)));
     });
     /**
      * Azure Blob Configurations should look like
