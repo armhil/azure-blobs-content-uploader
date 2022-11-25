@@ -27,7 +27,7 @@ module.exports = {
                 let dirsInDir = currentDirectoryContents
                     .filter(t => fs.lstatSync(path.join(currentDirectoryPath, t))
                     .isDirectory()).map(t => path.join(currentDirectoryPath, t));
-                if (dirsInDir && dirsInDir.length) q.enqueue(...dirsInDir);
+                if (dirsInDir && dirsInDir.length) dirsInDir.forEach(t => q.enqueue(d));
             }
         }
 
