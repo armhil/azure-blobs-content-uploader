@@ -1,0 +1,15 @@
+{
+	"files": [
+    "src/azure-upload-utils.ts",
+    "src/file-system-utils.ts",
+    "index.ts"
+  ],
+	"compilerOptions": {
+		"outDir": "./dist",
+		"target": "ES6",
+		"sourceMap": false,
+		"noImplicitAny": true,
+		"moduleResolution": "Node",
+    "esModuleInterop": true
+	}
+}
