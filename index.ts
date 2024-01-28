@@ -1,4 +1,4 @@
-const core = require('@actions/core');
+import * as core from '@actions/core';
 import { getFilesForUpload } from './src/file-system-utils';
 import { uploadAll } from './src/azure-upload-utils';
 import { LocalFileMapping, JobParamAzureUploadConfiguration, JobParamDirectoryUpload } from './src/types';
