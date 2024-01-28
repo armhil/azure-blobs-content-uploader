@@ -19,7 +19,7 @@ See the `directoriesToUpload` parameter, which supports passing multiple directo
         uses: armhil/azure-blobs-content-uploader@1.0.0
         with:
           azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }} # could be any secret that you have, see below for the format
-          directoriesToUpload: '[{"path": "test/integrationtest-directory", "shouldRecurse": "true", "baseContainerPath": "somePath" }]'
+          directoriesToUpload: '[{"directoryToUpload": "test/integrationtest-directory", "shouldRecurse": "true", "baseContainerPath": "somePath" }]'
 ```
 
 ### Azure blob details
