@@ -1,9 +1,8 @@
-import { LocalFileMapping } from "./types";
-
-const fs = require('fs');
-const Queue = require('queue-fifo');
-const path = require('path');
-let q = new Queue();
+import { LocalFileMapping } from './types';
+import fs from 'fs';
+import Queue from 'queue-fifo';
+import path from 'path';
+let q = new Queue<string>();
 
 /**
  * Traverses the disk and builds a list/map of which files to upload and with what relative paths.

@@ -11,5 +11,5 @@
 		"noImplicitAny": true,
 		"moduleResolution": "Node",
     "esModuleInterop": true
-	}
+  }
 }

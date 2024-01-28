@@ -1,5 +1,5 @@
 import { getFilesForUpload } from './../src/file-system-utils';
-const path = require('path');
+import path from 'path';
 
 describe('fileSystemUtils tests', () => {
     it('getFilesForUpload should upload the expected file list for non-recursive list', () =>{

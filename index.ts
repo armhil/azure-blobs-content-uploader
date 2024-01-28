@@ -12,7 +12,7 @@ try {
   /**
    * Directories to upload should look like
    * [
-   *  { path: "", shouldRecurse: "", baseContainerPath: "" }
+   *  { directoryToUpload: "", shouldRecurse: "", baseContainerPath: "" }
    * ]
    */
   const directoriesToUpload: JobParamDirectoryUpload = JSON.parse(core.getInput('directoriesToUpload')) || [];
