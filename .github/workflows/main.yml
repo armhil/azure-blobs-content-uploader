@@ -29,7 +29,12 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.3.0
       - run: npm ci
-      - run: npm test
+      - run: npm test -- --coverage
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: armhil/azure-blobs-content-uploader
 
       # Runs a single command using the runners shell
       - name: Upload Static Content
