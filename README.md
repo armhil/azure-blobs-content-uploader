@@ -1,6 +1,6 @@
 # Azure blobs - content uploader
 
-[![No real build - some simple tests & executing the action itself](https://github.com/armhil/azure-blobs-content-uploader/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/armhil/azure-blobs-content-uploader/actions/workflows/main.yml)
+[![No real build - some simple tests & executing the action itself](https://github.com/armhil/azure-blobs-content-uploader/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/armhil/azure-blobs-content-uploader/actions/workflows/main.yml) [![codecov](https://codecov.io/gh/armhil/azure-blobs-content-uploader/graph/badge.svg?token=6A2V1F5QK0)](https://codecov.io/gh/armhil/azure-blobs-content-uploader)
 
 Azure Blobs Content Uploader is designed as a github action, to help developers upload their build artifacts to *multiple* az-storage accounts, taking into account the absolute paths / relative paths / recursive structure from your file system.
 
