@@ -5,12 +5,14 @@ export type LocalFileMapping = {
   relativeUploadPath: string;
 }
 
-export type JobParamAzureUploadConfiguration = Array<{
-  // connection string to blob storage
-  connectionString: string;
-  // container in blob storage, most likely $web for static content
-  container: string;
-}>
+export type EntraAppConfiguration = {
+  // client id
+  clientId: string;
+  // client secret
+  clientSecret: string;
+  // tenant id
+  tenantId: string;
+}
 
 export type JobParamDirectoryUpload = Array<{
   // boolean, whether we should traverse deeper than a single dir

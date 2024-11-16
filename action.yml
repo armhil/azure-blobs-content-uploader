@@ -1,8 +1,20 @@
 name: 'Static Content Uploader for Azure Blobs'
 description: 'A useful tool for uploading CRA artifacts to Az Blobs'
 inputs:
-  azureBlobConfiguration: # Should be a secret value, with connection strings
-    description: 'Azure blob configuration'
+  clientId: # Should be a secret value, string
+    description: 'Entra App App Id'
+    required: true
+  clientSecret: # Should be a secret value, string
+    description: 'Entra App App Id'
+    required: true
+  tenantId: # Should be a secret value, with connection strings
+    description: 'Entra App Tenant Id'
+    required: true
+  storageAccountList: # Could be secret but not necessarily
+    description: 'Storage accounts'
+    required: true
+  containerName: # Could be secret but not necessarily
+    description: 'Container Name'
     required: true
   fileTypesToUpload: # We may not want to upload all files
     description: 'Our static content extensions to Content-Type may be limited for you, use this if you want to extend'
@@ -12,5 +24,5 @@ inputs:
     description: 'List of directories to upload, relative paths only'
     required: true
 runs:
-  using: 'node16'
+  using: 'node18'
   main: 'dist/index.js'
