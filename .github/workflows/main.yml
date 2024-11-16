@@ -35,5 +35,9 @@ jobs:
       - name: Upload Static Content
         uses: armhil/azure-blobs-content-uploader@1.0.0
         with:
-          azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }}
+          clientId: ${{ secrets.ENTRA_CLIENTID }}
+          clientSecret: ${{ secrets.ENTRA_CLIENTSECRET }}
+          tenantId: ${{ secrets.ENTRA_TENANTID }}
+          storageAccountsList: ${{ secrets.STORAGE_ACCOUNT_LIST }}
+          containerName: "$web"
           directoriesToUpload: '[{"path": "test/integrationtest-directory", "shouldRecurse": "true" }]'

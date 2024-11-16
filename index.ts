@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { getFilesForUpload } from './src/file-system-utils';
 import { uploadAll } from './src/azure-upload-utils';
-import { LocalFileMapping, JobParamAzureUploadConfiguration, JobParamDirectoryUpload } from './src/types';
+import { LocalFileMapping, EntraAppConfiguration, JobParamDirectoryUpload } from './src/types';
 
 try {
   /**
@@ -26,8 +26,16 @@ try {
    *  { connectionString: "", container: "" }
    * ]
    */
-  const azureBlobConfiguration: JobParamAzureUploadConfiguration = JSON.parse(core.getInput('azureBlobConfiguration'));
-  uploadAll(azureBlobConfiguration, filesToUpload, fileTypesToUpload);
+  const entraAppConfiguration: EntraAppConfiguration = {
+    clientId: core.getInput('clientId'),
+    clientSecret: core.getInput('clientSecret'),
+    tenantId: core.getInput('tenantId')
+  };
+
+  const storageAccountList: Array<string> = JSON.parse(core.getInput('storageAccountList'));
+  const containerName = core.getInput('containerName');
+
+  uploadAll(storageAccountList, containerName, entraAppConfiguration, filesToUpload, fileTypesToUpload);
 }
 catch (error) {
   core.setFailed(error.message);
