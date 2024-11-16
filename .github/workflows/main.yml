@@ -38,7 +38,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Upload Static Content
-        uses: armhil/azure-blobs-content-uploader@1.0.5
+        uses: armhil/azure-blobs-content-uploader@1.0.6
         with:
           clientId: ${{ secrets.ENTRA_CLIENTID }}
           clientSecret: ${{ secrets.ENTRA_CLIENTSECRET }}
