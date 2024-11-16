@@ -24,8 +24,14 @@ try {
      *  { connectionString: "", container: "" }
      * ]
      */
-    const azureBlobConfiguration = JSON.parse(core.getInput('azureBlobConfiguration'));
-    uploadAll(azureBlobConfiguration, filesToUpload, fileTypesToUpload);
+    const entraAppConfiguration = {
+        clientId: core.getInput('clientId'),
+        clientSecret: core.getInput('clientSecret'),
+        tenantId: core.getInput('tenantId')
+    };
+    const storageAccountList = JSON.parse(core.getInput('storageAccountList'));
+    const containerName = core.getInput('containerName');
+    uploadAll(storageAccountList, containerName, entraAppConfiguration, filesToUpload, fileTypesToUpload);
 }
 catch (error) {
     core.setFailed(error.message);
