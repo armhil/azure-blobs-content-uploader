@@ -1,6 +1,6 @@
 {
   "name": "azure-blobs-content-uploader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A file uploader to multiple az-blob storage accounts, primarily to help SPA developers.",
   "main": "index.js",
   "scripts": {
