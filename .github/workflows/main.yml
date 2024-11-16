@@ -45,4 +45,4 @@ jobs:
           tenantId: ${{ secrets.ENTRA_TENANTID }}
           storageAccountList: ${{ secrets.STORAGE_ACCOUNT_LIST }}
           containerName: "$web"
-          directoriesToUpload: '[{"path": "test/integrationtest-directory", "shouldRecurse": "true" }]'
+          directoriesToUpload: '[{"directoryToUpload": "test/integrationtest-directory", "shouldRecurse": "true" }]'
