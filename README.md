@@ -10,43 +10,27 @@ It's especially meant to help with SPA developers (ex: artifacts of create-react
 
 To configure this job, you'll need a few things.
 
+## Create your Entra App (Azure AAD app)
+Once you create the app, give it write permissions to the storage accounts that you want to upload blobs to.
+
+## Get the Entra App details and add them to GitHub
+
+Using Action Secrets, add the `clientId`, `clientSecret`, `tenantId` and further configurations below to Actions configuration.
+
 ### Your local files
 You should decide which directory to upload and to where on the storage accounts. This information is passed as parameters to the `*.yaml` file.
 See the `directoriesToUpload` parameter, which supports passing multiple directories. Note that while you can upload multiple directories, **they will be uploaded to the same location**.
 
 ```yaml
       - name: Upload Static Content
-        uses: armhil/azure-blobs-content-uploader@1.0.0
+        uses: armhil/azure-blobs-content-uploader@1.0.9
         with:
-          azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }} # could be any secret that you have, see below for the format
-          directoriesToUpload: '[{"directoryToUpload": "test/integrationtest-directory", "shouldRecurse": "true", "baseContainerPath": "somePath" }]'
-```
-
-### Azure blob details
-The content uploader supports uploading to multiple storage accounts, so you're going to need the *connection strings* of all the blob storages that you want to upload the files to.
-
-```yaml
-      - name: Upload Static Content
-        uses: armhil/azure-blobs-content-uploader@1.0.0
-        with:
-          azureBlobConfiguration: ${{ secrets.AZ_BLOB_CONFIGURATION }} # could be any secret that you have, see below for the format
-          directoriesToUpload: '[{"directoryToUpload": "test/integrationtest-directory", "shouldRecurse": "true", "baseContainerPath": "somePath" }]'
-```
-
-You should use the below format for the `azureBlobConfiguration` parameter and this value should come from the secrets. **azureBlobConfiguration parameter is expected to contain the connection strings to blob storage accounts, so it's incredibly important to store it in github repository secrets, rather than some plaintext mechanism**.
-
-```javascript
-// Secret value schema
-[
-  {
-    "connectionString": string, // Az Blobs connection string
-    "container": string, // Container to upload the files to
-  },
-]
-
-// Example secret value
-[{"connectionString": "DefaultEndpointsProtocol=https;AccountName=azblobuploadtest;AccountKey=someAccountKeyNotReal;EndpointSuffix=core.windows.net
-", "container": "$web"}]
+          clientId: ${{ secrets.ENTRA_CLIENTID }}
+          clientSecret: ${{ secrets.ENTRA_CLIENTSECRET }}
+          tenantId: ${{ secrets.ENTRA_TENANTID }}
+          storageAccountList: ${{ secrets.STORAGE_ACCOUNT_LIST }} # Storage account names, in array form like ["account1", "account2"]
+          containerName: "$web"
+          directoriesToUpload: '[{"directoryToUpload": "test/integrationtest-directory", "shouldRecurse": "true" }]'
 ```
 
 *Hint*: If you're uploading some static content for web-apps (like artifacts of create-react-app) - you can use the `$web` container from Azure Blob Storage. 
