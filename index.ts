@@ -20,12 +20,7 @@ try {
   directoriesToUpload.forEach(t => {
     filesToUpload = filesToUpload.concat(getFilesForUpload(t.directoryToUpload, t.shouldRecurse, t.baseContainerPath, Object.keys(fileTypesToUpload)));
   });
-  /**
-   * Azure Blob Configurations should look like
-   * [
-   *  { connectionString: "", container: "" }
-   * ]
-   */
+  // build entra auth configuration
   const entraAppConfiguration: EntraAppConfiguration = {
     clientId: core.getInput('clientId'),
     clientSecret: core.getInput('clientSecret'),
