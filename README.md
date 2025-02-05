@@ -25,12 +25,30 @@ See the `directoriesToUpload` parameter, which supports passing multiple directo
       - name: Upload Static Content
         uses: armhil/azure-blobs-content-uploader@1.0.9
         with:
+          # required parameter - your entra (ex: AAD) - application id
           clientId: ${{ secrets.ENTRA_CLIENTID }}
-          clientSecret: ${{ secrets.ENTRA_CLIENTSECRET }}
-          tenantId: ${{ secrets.ENTRA_TENANTID }}
-          storageAccountList: ${{ secrets.STORAGE_ACCOUNT_LIST }} # Storage account names, in array form like ["account1", "account2"]
-          containerName: "$web"
-          directoriesToUpload: '[{"directoryToUpload": "test/integrationtest-directory", "shouldRecurse": "true" }]'
-```
 
-*Hint*: If you're uploading some static content for web-apps (like artifacts of create-react-app) - you can use the `$web` container from Azure Blob Storage. 
+          # required parameter - your entra (ex: AAD) - application secret
+          clientSecret: ${{ secrets.ENTRA_CLIENTSECRET }}
+
+          # required parameter - your entra (ex: AAD) - tenant id
+          tenantId: ${{ secrets.ENTRA_TENANTID }}
+
+          # required parameter - storage account names that you're uploading to.
+          # if you're providing this value from secrets, use just the array form like ["account1", "account2"]
+          # if you're passing this value from the yaml file (so directly adding to source) - use quotations like so: '["account1", "account2"]'
+          storageAccountList: ${{ secrets.STORAGE_ACCOUNT_LIST }}
+
+          # required parameter - container name, same across all storage accounts, $web is recommended if you're hosting SPAs - see here:
+          # https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website 
+          containerName: "$web"
+
+          # required parameter - what are you uploading, whether recursively or not. If you want to map the artifacts to a particular location in the container
+          # you can use the "baseContainerPath" property of each record.
+          # see an example here: https://github.com/armhil/easy-qrcode-barcode-addin/blob/main/.github/workflows/main.yml
+          directoriesToUpload: '[{"directoryToUpload": "test/integrationtest-directory", "shouldRecurse": "true" }]'
+
+          # optional parameter - what file extensions with content-type are you uploading? Others will be omitted.
+          # default value: '{ ".html": "text/html", ".pdf": "application/pdf", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".css": "text/css", ".js": "application/x-javascript" }'
+          fileTypesToUpload: '{ ".html": "text/html" }'
+```
